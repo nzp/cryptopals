@@ -4,33 +4,33 @@ from array import array
 FREQUENCIES = {
     #  Made up frequency for space.  It's slightly higher than 'e', but I can't
     #  find the actual number.
-    b' ': 13.0,
-    b'e': 12.02, b'E': 12.02,
-    b't': 9.10, b'T': 9.10,
-    b'a': 8.12, b'A': 8.12,
-    b'o': 7.68, b'O': 7.68,
-    b'i': 7.31, b'I': 7.31,
-    b'n': 6.95, b'N': 6.95,
-    b's': 6.28, b'S': 6.28,
-    b'r': 6.02, b'R': 6.02,
-    b'h': 5.92, b'H': 5.92,
-    b'd': 4.32, b'D': 4.32,
-    b'l': 3.98, b'L': 3.98,
-    b'u': 2.88, b'U': 2.88,
-    b'c': 2.71, b'C': 2.71,
-    b'm': 2.61, b'M': 2.61,
-    b'f': 2.30, b'F': 2.30,
-    b'y': 2.11, b'Y': 2.11,
-    b'w': 2.09, b'W': 2.09,
-    b'g': 2.03, b'G': 2.03,
-    b'p': 1.82, b'P': 1.82,
-    b'b': 1.49, b'B': 1.49,
-    b'v': 1.11, b'V': 1.11,
-    b'k': 0.69, b'K': 0.69,
-    b'x': 0.17, b'X': 0.17,
-    b'q': 0.11, b'Q': 0.11,
-    b'j': 0.10, b'J': 0.10,
-    b'z': 0.07, b'Z': 0.07
+    ord(' '): 13.0,
+    ord('e'): 12.02, ord('E'): 12.02,
+    ord('t'): 9.10, ord('T'): 9.10,
+    ord('a'): 8.12, ord('A'): 8.12,
+    ord('o'): 7.68, ord('O'): 7.68,
+    ord('i'): 7.31, ord('I'): 7.31,
+    ord('n'): 6.95, ord('N'): 6.95,
+    ord('s'): 6.28, ord('S'): 6.28,
+    ord('r'): 6.02, ord('R'): 6.02,
+    ord('h'): 5.92, ord('H'): 5.92,
+    ord('d'): 4.32, ord('D'): 4.32,
+    ord('l'): 3.98, ord('L'): 3.98,
+    ord('u'): 2.88, ord('U'): 2.88,
+    ord('c'): 2.71, ord('C'): 2.71,
+    ord('m'): 2.61, ord('M'): 2.61,
+    ord('f'): 2.30, ord('F'): 2.30,
+    ord('y'): 2.11, ord('Y'): 2.11,
+    ord('w'): 2.09, ord('W'): 2.09,
+    ord('g'): 2.03, ord('G'): 2.03,
+    ord('p'): 1.82, ord('P'): 1.82,
+    ord('b'): 1.49, ord('B'): 1.49,
+    ord('v'): 1.11, ord('V'): 1.11,
+    ord('k'): 0.69, ord('K'): 0.69,
+    ord('x'): 0.17, ord('X'): 0.17,
+    ord('q'): 0.11, ord('Q'): 0.11,
+    ord('j'): 0.10, ord('J'): 0.10,
+    ord('z'): 0.07, ord('Z'): 0.07
 }
 
 KEYS = array(
@@ -78,10 +78,9 @@ class XorCiphertext:
         for plaintext in self.get_plaintexts():
             freqs = []
 
-            for c in plaintext.plaintext:
-                c_b = bytes([c])
+            for c in list(plaintext.plaintext):
                 try:
-                    freqs.append(FREQUENCIES[c_b])
+                    freqs.append(FREQUENCIES[c])
                 except KeyError:
                     continue
 
