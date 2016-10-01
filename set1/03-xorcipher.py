@@ -1,9 +1,10 @@
 FREQUENCIES = {
+    #  Made up frequency for space.  It's slightly higher than 'e', but I can't
+    #  find the actual number.
+    ' ': 13.0,
     'e': 12.02, 'E': 12.02,
     't': 9.10, 'T': 9.10,
     'a': 8.12, 'A': 8.12,
-    #  Punctuation including space is in 4th place, but I made up the frequency.
-    ' ': 7.9,
     'o': 7.68, 'O': 7.68,
     'i': 7.31, 'I': 7.31,
     'n': 6.95, 'N': 6.95,
