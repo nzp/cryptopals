@@ -58,10 +58,11 @@ class XorCiphertext:
         self._ciphertext_b = bytes.fromhex(self.ciphertext)
 
     class Plaintext:
-        def __init__(self, plaintext, key):
+        def __init__(self, plaintext, key, ciphertext):
             self.plaintext = plaintext
             self.key = key
             self.freq_sum = 0
+            self.ciphertext = ciphertext
 
     def get_plaintexts(self):
         for k in KEYS:
@@ -70,12 +71,15 @@ class XorCiphertext:
             for i in list(self._ciphertext_b):
                 xored.append(i^k)
 
-            yield self.Plaintext(plaintext=bytes(xored), key=chr(k))
+            yield self.Plaintext(plaintext=bytes(xored),
+                                 key=chr(k),
+                                 ciphertext=self.ciphertext)
 
-    def get_most_probable(self):
+    @staticmethod
+    def get_most_probable(plaintexts):
         results = []
 
-        for plaintext in self.get_plaintexts():
+        for plaintext in plaintexts:
             freqs = []
 
             for c in list(plaintext.plaintext):
@@ -88,3 +92,4 @@ class XorCiphertext:
             results.append(plaintext)
 
         return max(results, key=lambda result: result.freq_sum)
+
