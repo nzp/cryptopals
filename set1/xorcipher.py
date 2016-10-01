@@ -87,4 +87,4 @@ class XorCiphertext:
             plaintext.freq_sum = sum(freqs)
             results.append(plaintext)
 
-        return sorted(results, key=lambda result: result.freq_sum, reverse=True)
+        return max(results, key=lambda result: result.freq_sum)
